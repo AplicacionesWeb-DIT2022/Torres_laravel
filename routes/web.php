@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use app\Http\Controllers\TodosController;
+use App\Http\Controllers\JugadorController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -22,3 +25,13 @@ Route::get('/services', function () {
     return view('todos.index');
 });
 
+// Route::get('/jugadores', function () {
+
+//     return view('jugadores.index');
+// });
+
+// Route::get('/jugador/create',[JugadorController::class,'create']);
+
+
+#Route::post('todos', [TodosController::class,'save'])->name('todos');
+Route::resource('jugador',JugadorController::class);
