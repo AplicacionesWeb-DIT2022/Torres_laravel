@@ -6,7 +6,7 @@ use App\Models\Jugador;
 
 use Illuminate\Http\Request;
 
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Storage ;
 
 #use App\http\Controllers\JugadorController;
 
@@ -74,6 +74,7 @@ class JugadorController extends Controller
      */
     public function edit($id)
     {
+        #buscamos el registro que me mandaron en el id
         $jugador= Jugador::findOrFail($id);
         return view('jugador.edit', compact('jugador'));
     }
@@ -85,21 +86,23 @@ class JugadorController extends Controller
      * @param  \App\Models\Jugador  $jugador
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,$id)
+    public function update(Request $request, $id)
     {
-        
+        #Guardo los datos en la variable datosJugador
         $datosJugador = request()->except(['_token','_method']);
+        #Pregunto si existe
         if ($request->hasFile('Foto')){
+            
             $jugador= Jugador::findOrFail($id);
             Storage::delete('public/'.$jugador->Foto);
             #si hay foto alteramos el campo usamos el nombre 
-            $datosJugador['Foto'] = $request->file('Foto')->store('uploads','public');
+            $datosJugador['Foto']=$request->file('Foto')->store('uploads','public');
         }
         #actualizando base de datos
         Jugador::where('id','=',$id) ->update($datosJugador);
         $jugador= Jugador::findOrFail($id);
         
-        return view('jugador.edit', compact('jugador'));
+        return view('jugador.edit',compact('jugador') );
     }
 
     /**
