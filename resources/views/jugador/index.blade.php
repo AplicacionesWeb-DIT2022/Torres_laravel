@@ -1,7 +1,14 @@
-mostrar la lista de jugadores  
-@extends('app')
+
+@extends('todos.app')
 @section('content')
-<table class="table table-bordered border-primary">
+<h1>    Mostrar la lista de jugadores  </h1>
+@if (Session::has('mensaje'))
+    <div class="alert alert-success" role="alert">
+        {{Session::get('mensaje')}}
+    </div>
+    
+    @endif    
+<table class="table table-bordered border-primary ">
     <thead>
         <tr>
             <th>#</th>
@@ -28,11 +35,11 @@ mostrar la lista de jugadores
             <td>{{$jugador->Apellido}}</td>
             <td>{{$jugador->Equipo}}</td>
 
-            <td> <a href="{{url('/jugador/'.$jugador->id.'/edit')}}" > Editar </a>  
-                <form action="{{url('/jugador/'.$jugador->id)}}" method="post">
+            <td> <a href="{{url('/jugador/'.$jugador->id.'/edit')}}" class="btn btn-warning"> Editar </a>  
+                <form action="{{url('/jugador/'.$jugador->id)}}" class="d-inline" method="post">
                     @csrf
                     {{@method_field('DELETE')}}
-                    <input type="submit" onclick="return confirm('¿Desea borrar?')" value="Borrar">
+                    <input class="btn btn-danger" type="submit" onclick="return confirm('¿Desea borrar?')" value="Borrar">
                 </form>    
             
             </td>
@@ -40,4 +47,5 @@ mostrar la lista de jugadores
         @endforeach)
     </tbody>
   </table>
+{!! $jugadores->links()!!}
   @endsection

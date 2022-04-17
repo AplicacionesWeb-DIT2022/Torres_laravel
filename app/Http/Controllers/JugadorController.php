@@ -20,7 +20,7 @@ class JugadorController extends Controller
     public function index()
     {
         //
-        $datos['jugadores']= Jugador::paginate(5);
+        $datos['jugadores']= Jugador::paginate(1);
         return view('jugador.index', $datos);
     }
 
@@ -43,7 +43,21 @@ class JugadorController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {   
+        //Validando datos
+        $validator=[
+            'Nombre'=> 'required|string|max:100',
+            'Apellido'=> 'required|string|max:100',
+            'Equipo'=> 'required|string|max:100',
+            'Foto'=> 'required|max:100000|mimes:jpeg,png,jpg',
+            'Dni'=> 'required|max:100',
+        ];
+        $mensaje=[
+            'required'=> 'El :attribute es requerido',
+            'Foto.required' => 'La Foto es requerida' 
+        ];
+        $this->validate($request,$validator,$mensaje);
+
         //
         #$datosJugador = request()-> all();
         $datosJugador = request()->except('_token');
@@ -52,7 +66,8 @@ class JugadorController extends Controller
             $datosJugador['Foto'] = $request->file('Foto')->store('uploads','public');
         }
         Jugador::insert($datosJugador);
-        return response()->json($datosJugador);
+        return redirect('jugador')->with('mensaje','Jugador se cargo correctamente');
+        // return response()->json($datosJugador);
     }
 
     /**
@@ -88,6 +103,25 @@ class JugadorController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+        //Validando datos 
+        $validator=[
+            'Nombre'=> 'required|string|max:100',
+            'Apellido'=> 'required|string|max:100',
+            'Equipo'=> 'required|string|max:100',
+            'Dni'=> 'required|max:100',
+        ];
+        $mensaje=[
+            'required'=> 'El :attribute es requerido',
+        ];
+        if ($request->hasFile('Foto')){
+            $validator=['Foto'=> 'required|max:100000|mimes:jpeg,png,jpg',];
+            $mensaje=[
+                'Foto.required' => 'La Foto es requerida', 
+            ];
+        }
+        $this->validate($request,$validator,$mensaje);
+
         #Guardo los datos en la variable datosJugador
         $datosJugador = request()->except(['_token','_method']);
         #Pregunto si existe
@@ -102,7 +136,9 @@ class JugadorController extends Controller
         Jugador::where('id','=',$id) ->update($datosJugador);
         $jugador= Jugador::findOrFail($id);
         
-        return view('jugador.edit',compact('jugador') );
+        //return view('jugador.edit',compact('jugador') );
+
+        return redirect('jugador')->with('mensaje','Empleado actualizado correctamente');
     }
 
     /**
@@ -114,7 +150,11 @@ class JugadorController extends Controller
     public function destroy($id)
     {
         //
-        Jugador::destroy($id);
-        return redirect('jugador');
+        $jugador= Jugador::findOrFail($id);
+        if(Storage::delete('public/'.$jugador->Foto)){
+            Jugador::destroy($id);
+        }
+
+        return redirect('jugador')->whit('mensaje','Empleado borrado correctamente');
     }
 }
