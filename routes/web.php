@@ -37,9 +37,9 @@ Route::get('/services', function () {
 Route::resource('jugador',JugadorController::class);
 Auth::routes();
 
-Route::get('/home', [JugadorController::class, 'index'])->name('home');
+Route::get('/home', [JugadorController::class, 'create'])->name('home');
 
 Route::group(['middleware'=> 'auth'],function(){
-    Route::get('/', [JugadorController::class, 'index'])->name('home');
+    Route::get('/', [JugadorController::class, 'create'])->name('home');
 
 });
