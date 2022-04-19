@@ -1,0 +1,12 @@
+El proyecto a realizar es de un torneo de Futbol, donde se cargaran equipos
+con sus respectivos jugadores. la intencion es, una vez cargados los equipos
+con sus plantillas, poder crear un torneo con sus respectivos grupos.
+Laravel- php
+
+1er punto: deploy de la app con heroku
+	   un login creado desde laravel
+	   Crud de Jugador
+	   
+
+Heroku
+	https://laraveltorres.herokuapp.com/
