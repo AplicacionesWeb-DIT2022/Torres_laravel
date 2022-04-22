@@ -142,7 +142,7 @@ class JugadorController extends Controller
         
         //return view('jugador.edit',compact('jugador') );
 
-        return redirect('jugador')->with('mensaje','Empleado actualizado correctamente');
+        return redirect('jugador')->with('mensaje','Jugador actualizado correctamente');
     }
 
     /**

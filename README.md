@@ -19,3 +19,5 @@ Laravel- php
 
 Heroku
 	https://laraveltorres.herokuapp.com/
+	user: j@gmail.com
+	pass: 12345678
