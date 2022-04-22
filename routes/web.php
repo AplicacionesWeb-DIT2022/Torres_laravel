@@ -17,7 +17,8 @@ use App\Http\Controllers\JugadorController;
 */
 
 Route::get('/', function () {
-    return view('auth.login');
+    return view('welcome');
+    //return view('auth.login');
 });
 
 Route::get('/services', function () {
@@ -34,12 +35,12 @@ Route::get('/services', function () {
 
 
 #Route::post('todos', [TodosController::class,'save'])->name('todos');
-Route::resource('jugador',JugadorController::class);
-Auth::routes();
+Route::resource('jugador',JugadorController::class)->middleware('auth');
+Auth::routes(['register'=>false, 'reset'=>false]);
 
-Route::get('/home', [JugadorController::class, 'create'])->name('home');
+Route::get('/home', [JugadorController::class, 'index'])->name('home');
 
 Route::group(['middleware'=> 'auth'],function(){
-    Route::get('/', [JugadorController::class, 'create'])->name('home');
+    Route::get('/', [JugadorController::class, 'laravel'])->name('home');
 
 });

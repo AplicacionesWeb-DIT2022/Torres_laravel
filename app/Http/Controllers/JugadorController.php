@@ -20,7 +20,7 @@ class JugadorController extends Controller
     public function index()
     {
         //
-        $datos['jugadores']= Jugador::paginate(1);
+        $datos['jugadores']= Jugador::paginate(5);
         return view('jugador.index', $datos);
     }
 
@@ -30,6 +30,10 @@ class JugadorController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+    public function laravel()
+    {
+        return view('welcome');
+    }
     public function create()
     {
         //
