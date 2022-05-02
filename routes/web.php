@@ -17,13 +17,13 @@ use App\Http\Controllers\JugadorController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('todos.inicio');
     //return view('auth.login');
 });
 
 Route::get('/services', function () {
 
-    return view('todos.index');
+    return view('todos.inicio');
 });
 
 // Route::get('/jugadores', function () {
@@ -36,9 +36,12 @@ Route::get('/services', function () {
 
 #Route::post('todos', [TodosController::class,'save'])->name('todos');
 Route::resource('jugador',JugadorController::class)->middleware('auth');
-Auth::routes(['register'=>false, 'reset'=>false]);
+
+Auth::routes(['reset'=>false]);
 
 Route::get('/home', [JugadorController::class, 'index'])->name('home');
+
+Route::resource('club', App\Http\Controllers\ClubController ::class);
 
 Route::group(['middleware'=> 'auth'],function(){
     Route::get('/', [JugadorController::class, 'laravel'])->name('home');

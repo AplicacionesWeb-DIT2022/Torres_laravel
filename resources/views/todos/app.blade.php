@@ -69,18 +69,32 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
                     <ul class="navbar-nav">
-                      <li class="nav-item">
-                        <a class="nav-link" href="/jugador">Jugadores</a>
+                      <ul><a class="nav-link" href="/services" >Inicio</a></ul>
+                      <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          Jugadores
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                          <li><a class="dropdown-item" href="/jugador/create">Crear</a></li>
+                          <li><a class="dropdown-item" href="/jugador/">Jugadores</a></li>
+                        </ul>
+                      </li>          
+                      <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          Club
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                          <li><a class="dropdown-item" href="/club/create">Crear</a></li>
+                          <li><a class="dropdown-item" href="/club/">Ver Clubes</a></li>
+                        </ul>
                       </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="/jugador/create">Crear</a>
-                      </li>
+                      <form class="d-flex">
+                        <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Buscar</button>
+                      </form>
                     </ul>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>

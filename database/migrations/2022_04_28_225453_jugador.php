@@ -19,10 +19,11 @@ return new class extends Migration
             $table -> string('Nombre');
             $table -> string('Apellido');
             $table -> string('Equipo');
+            #$table -> bigInteger('Clubes_id')->unsigned();
             $table -> string('Foto');
             $table -> string('Dni');
-            
             $table->timestamps();
+            #$table->foreign('Clubes_id')->references('id')->on('clubes')->onDelete('cascade');
         });
     }
 

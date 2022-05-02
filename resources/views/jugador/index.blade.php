@@ -7,7 +7,7 @@
         {{Session::get('mensaje')}}
     </div>
     
-    @endif    
+@endif
 <table class="table table-bordered border-primary ">
     <thead>
         <tr>
@@ -21,6 +21,7 @@
         </tr>
     </thead>
     <tbody>
+        
         @foreach ( $jugadores as $jugador )
             
         
@@ -30,6 +31,7 @@
             <td >
                 <img src="{{asset('storage').'/'.$jugador->Foto}}" width="100" alt="Sin Foto">
             </td>
+            
             <td>{{$jugador->Dni}}</td>
             <td>{{$jugador->Nombre}}</td>
             <td>{{$jugador->Apellido}}</td>
@@ -44,7 +46,7 @@
             
             </td>
         </tr>
-        @endforeach)
+        @endforeach
     </tbody>
   </table>
 {!! $jugadores->links()!!}
