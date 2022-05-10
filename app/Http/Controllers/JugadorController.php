@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Jugador;
 
+use App\Models\Club;
+
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Storage ;
@@ -32,12 +34,13 @@ class JugadorController extends Controller
 
     public function laravel()
     {
-        return view('welcome');
+        return view('inicio');
     }
     public function create()
     {
         //
-        return view('jugador.crear');
+        $datos['club']= Club::all();
+        return view('jugador.crear',$datos);
     }
 
     /**
@@ -80,9 +83,11 @@ class JugadorController extends Controller
      * @param  \App\Models\Jugador  $jugador
      * @return \Illuminate\Http\Response
      */
-    public function show(Jugador $jugador)
+    public function show($id)
     {
-        //
+        #buscamos el registro que me mandaron en el id
+        $jugador= Jugador::findOrFail($id);
+        return $jugador-> tojson();        
     }
 
     /**
@@ -95,7 +100,8 @@ class JugadorController extends Controller
     {
         #buscamos el registro que me mandaron en el id
         $jugador= Jugador::findOrFail($id);
-        return view('jugador.edit', compact('jugador'));
+        $club= Club::all();
+        return view('jugador.edit', compact('jugador','club'));
     }
 
     /**

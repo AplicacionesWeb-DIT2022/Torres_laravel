@@ -16,17 +16,23 @@
             <div class="col-md-4">
                 <h2>Crear Club</h2>
                 <p>Crear un club para su iniciacion en el torneo</p>
-                <p><a class="btn btn-default" href="/club/create" role="button">Club   &raquo;</a></p>
-            </div>
+                <button  type="button" class="btn btn-outline-primary"
+                <p>
+                    <a class="btn btn-default" href="/club/create" role="button">Club&raquo;</a></p>
+                </button>
+                </div>
             <div class="col-md-4">
                 <h2>Crear Torneo</h2>
                 <p>Podras crear torneos para distintos eventos</p>
+                <button  type="button" class="btn btn-outline-success"
                 <p><a class="btn btn-default" href="/torneo/create" role="button">Torneo &raquo;</a></p>
+                </button>
             </div>
             <div class="col-md-4">
                 <h2>Opciones de Jugador</h2>
                 <p>ABM de Jugadores</p>
-                <p><a class="btn btn-default" href="/jugador/create" role="button">Jugadores &raquo;</a></p>
+                <button  type="button" class="btn btn-outline-danger"
+                <p><a class="btn btn-default" href="/jugador/create" role="button">Jugadores &raquo;</a></p></button>
             </div>
         </div>
         <hr>

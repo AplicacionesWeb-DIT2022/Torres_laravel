@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Club;
+use App\Models\Jugador;
 use Illuminate\Http\Request;
 
 /**
@@ -59,7 +60,14 @@ class ClubController extends Controller
         Club::insert($datosClubes);
         return redirect('club')->with('mensaje','Club se cargo correctamente');
     }
-
+    
+    public function show($id)
+    {
+        $club = Club::find($id);
+        $jugadores= Jugador::where('Equipo',$club->id)->get();
+        #return ($club, $jugadores)-> tojson();
+        return view('club.show',compact('club','jugadores'));
+    }
 
     /**
      * Display the specified resource.
@@ -67,11 +75,15 @@ class ClubController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function showApo($id)
     {
-        $Club = Club::find($id);
-
-        return view('Club.show', compact('Club'));
+        $club = Club::find($id);
+        $jugadores= Jugador::where('Equipo',$club->id)->get();
+        #return ($club, $jugadores)-> tojson();
+        return response()->json([
+            'Club' => $club,
+            'Jugadores' => $jugadores,
+        ]);
     }
 
     /**

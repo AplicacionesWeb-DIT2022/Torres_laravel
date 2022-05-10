@@ -7,5 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Club extends Model
 {
+    
     use HasFactory;
+    
+    public function torneo()
+    {
+        return $this->belongsToMany(Torneo::class);
+    }
+
 }

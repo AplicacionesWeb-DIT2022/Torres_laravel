@@ -10,13 +10,13 @@
 </div>
 @endif
 <div class="container">
+    <div class="mb-3">
+        <label for="Dni" class="form-label">DNI</label>
+        <input type="text" class="form-control" id="Dni" placeholder="Dni" value="{{isset($jugador->Dni)?$jugador->Dni:old('Dni') }}" name="Dni">
+    </div>
 <div class="mb-3">
     <label for="Nombre" class="form-label" >Nombre</label>
     <input type="text" class="form-control" name="Nombre" value="{{isset($jugador->Nombre)?$jugador->Nombre:old('Nombre') }}" id="Nombre" placeholder="Nombre" >
-</div>
-<div class="mb-3">
-    <label for="Dni" class="form-label">DNI</label>
-    <input type="text" class="form-control" id="Dni" placeholder="Dni" value="{{isset($jugador->Dni)?$jugador->Dni:old('Dni') }}" name="Dni">
 </div>
 <div class="mb-3">
     <label for="apellido" class="form-label">Apellido</label>
@@ -24,7 +24,11 @@
 </div>
 <div class="mb-3">
     <label for="equipo" class="form-label">Nombre del equipo</label>
-    <input type="text" class="form-control" id="Equipo" placeholder="Equipo" value="{{isset($jugador->Equipo)?$jugador->Equipo:old('Equipo') }}" name="Equipo">
+    <select type="text" class="form-select" id="Equipo" placeholder="Equipo" name="Equipo">
+    @foreach ( $club as $club )
+        <option value="{{$club->id}}">{{$club->Nombre}}</option>
+        @endforeach
+    </select>    
 </div>
 <div class="mb-3">
     <label for="foto" class="form-label">Foto del jugador</label>

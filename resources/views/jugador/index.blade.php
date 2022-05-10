@@ -21,7 +21,6 @@
         </tr>
     </thead>
     <tbody>
-        
         @foreach ( $jugadores as $jugador )
             
         
@@ -31,11 +30,12 @@
             <td >
                 <img src="{{asset('storage').'/'.$jugador->Foto}}" width="100" alt="Sin Foto">
             </td>
-            
             <td>{{$jugador->Dni}}</td>
             <td>{{$jugador->Nombre}}</td>
             <td>{{$jugador->Apellido}}</td>
-            <td>{{$jugador->Equipo}}</td>
+            <td>{{$jugador->club[0]->Nombre}}</td>
+{{-- 
+            <td>{{$jugador->Equipo}}</td> --}}
 
             <td> <a href="{{url('/jugador/'.$jugador->id.'/edit')}}" class="btn btn-warning"> Editar </a>  
                 <form action="{{url('/jugador/'.$jugador->id)}}" class="d-inline" method="post">

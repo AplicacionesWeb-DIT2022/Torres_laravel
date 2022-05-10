@@ -43,7 +43,10 @@ Route::get('/home', [JugadorController::class, 'index'])->name('home');
 
 Route::resource('club', App\Http\Controllers\ClubController ::class);
 
+
 Route::group(['middleware'=> 'auth'],function(){
     Route::get('/', [JugadorController::class, 'laravel'])->name('home');
-
+    
+    
+    
 });

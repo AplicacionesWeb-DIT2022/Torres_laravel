@@ -13,16 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('jugadors', function (Blueprint $table) {
-            $table->id();
-
-            $table -> string('Nombre');
-            $table -> string('Apellido');
-            #$table -> string('Equipo');
+        Schema::create('torneo_clubs', function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table -> bigInteger('Equipo')->unsigned();
-            $table -> string('Foto');
-            $table -> string('Dni');
+            $table -> bigInteger('Torneo')->unsigned();            
             $table->timestamps();
+            $table->foreign('Torneo')->references('id')->on('torneos')->onDelete('cascade');
             $table->foreign('Equipo')->references('id')->on('clubs')->onDelete('cascade');
         });
     }
@@ -34,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('jugadors');
+        //
     }
 };

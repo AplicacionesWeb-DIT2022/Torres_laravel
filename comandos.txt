@@ -1,1 +1,0 @@
-heroku pg:push postgres://postgres:12345@localhost:5432/laravel DATABASE_URL --app laraveltorres
