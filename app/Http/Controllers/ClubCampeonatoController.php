@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\club_campeonato;
+use App\Models\Club_campeonato;
 use Illuminate\Http\Request;
+use App\Models\Club;
+use App\Models\Torneo;
+use Illuminate\Support\Facades\Log;
 
 class ClubCampeonatoController extends Controller
 {
@@ -14,7 +17,9 @@ class ClubCampeonatoController extends Controller
      */
     public function index()
     {
-        //
+        $datos['torneos']= Torneo::paginate(5);
+        return view('club_torneo.index', $datos);
+
     }
 
     /**
@@ -24,7 +29,8 @@ class ClubCampeonatoController extends Controller
      */
     public function create()
     {
-        //
+        $club = Club::all();   
+        return view('club_torneo.crear', compact('club'));
     }
 
     /**
@@ -35,7 +41,21 @@ class ClubCampeonatoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $datosTorneo = [
+            'Nombre' => $request->get('Nombre'),
+            'anio' =>  $request->get('anio')
+        ];
+       
+        //Torneo creado,
+        $torneo = new Torneo;
+        $torneo->Nombre= $datosTorneo['Nombre'];
+        $torneo->anio= $datosTorneo['anio'];
+        $torneo->save();
+        //       ClubCampeonato::insert($datosClubes->id);        
+        $torneo->club()->attach(array_values($request->get('Equipos')));
+        return redirect('clubTorneo')->with('mensaje','Club se cargo correctamente');
+        //return view('club_torneo.show',compact('torneo'));
+        //return redirect('club', compact('datosClubes'))->with('mensaje','Club se cargo correctamente');
     }
 
     /**
@@ -44,9 +64,16 @@ class ClubCampeonatoController extends Controller
      * @param  \App\Models\club_campeonato  $club_campeonato
      * @return \Illuminate\Http\Response
      */
-    public function show(club_campeonato $club_campeonato)
+    public function show($idTorneo)
     {
-        //
+        $torneo = Torneo::find($idTorneo);
+        Log::debug($torneo);
+        // $clubes= cluborneo::where('Torneo',$campeonato->$club)->get();
+        // $club = Club::find($id);
+        // $jugadores= Jugador::where('Equipo',$club->id)->get();
+        #return ($club, $jugadores)-> tojson();
+        return view('club_torneo.show',compact('torneo'));
+ 
     }
 
     /**
@@ -55,9 +82,10 @@ class ClubCampeonatoController extends Controller
      * @param  \App\Models\club_campeonato  $club_campeonato
      * @return \Illuminate\Http\Response
      */
-    public function edit(club_campeonato $club_campeonato)
+    public function edit($id)
     {
-        //
+        $torneo = Torneo::findOrFail($id);
+        return view('torneo.edit', compact('torneo'));
     }
 
     /**
@@ -67,9 +95,20 @@ class ClubCampeonatoController extends Controller
      * @param  \App\Models\club_campeonato  $club_campeonato
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, club_campeonato $club_campeonato)
+    public function update(Request $request,$id)
     {
-        //
+        $validator = [
+            'Nombre' => 'required|string|max:100',
+            'anio' => 'required|string|max:100'
+        ];
+        $mensaje = [
+            'required' => 'El :attribite es requerido'
+        ];
+        this->validate($request, $validator, $mensaje);
+        $datosTorneo = request()->except(['_token','_method']);
+        Torneo::where('id','=',$id)->update($datosTorneo);
+        $torneo= Torneo::findOrFail($id);
+        return redirect('torneo')->with('mensaje','Torneo actualizado correctamente');
     }
 
     /**
@@ -78,8 +117,12 @@ class ClubCampeonatoController extends Controller
      * @param  \App\Models\club_campeonato  $club_campeonato
      * @return \Illuminate\Http\Response
      */
-    public function destroy(club_campeonato $club_campeonato)
+    public function destroy($id)
     {
-        //
+        $torneo = Torneo::find($id)->delete();
+
+        return redirect()->route('clubTorneo.index')
+            ->with('success', 'Torneo eliminado correctamente');
+
     }
 }

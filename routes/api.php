@@ -20,14 +20,16 @@ use App\Http\Controllers\ClubController;
 //     return $request->user();
 // });
 
-Route::get('/jugadores',[JugadorController::class,'index']); //todos los jugadores
+Route::get('/jugadores',[JugadorController::class,'indexApi']); //todos los jugadores
 
-Route::get('/jugadores/show/{id}',[JugadorController::class,'show']); //todos los jugadores
+Route::get('jugadores/show/{id}',[JugadorController::class,'showApi']); //todos los jugadores
 
-Route::post('/jugadores', [JugadorController::class,'store']); //Guardar jugadores
+Route::post('/jugadores', [JugadorController::class,'storeApi']); //Guardar jugadores
 
-Route::put('/jugadores/update/{id}', [ArticuloController::class,'update']); //actualizar
+Route::put('/jugadores/update/{id}', [JugadorController::class,'updateApi']); //actualizar
 
-Route::delete('/jugadores/destroy/{id}', [ArticuloController::class,'destroy']); // eliminar
+Route::delete('/jugadores/destroy/{id}', [JugadorController::class,'destroyApi']); // eliminar
 
-Route::get('/club/show/{id}',[ClubController::class,'show']); //todos los jugadores
+
+Route::get('/club/show/{id}',[ClubController::class,'showApi']); //todos los jugadores
+

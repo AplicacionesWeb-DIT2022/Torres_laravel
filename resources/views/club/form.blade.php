@@ -1,4 +1,6 @@
+<div class="text-center">
 <h1> {{$modo}} club</h1>
+</div>
 @if (count($errors)>0)
     <div class="alert alert-danger" role="alert">
         <ul>

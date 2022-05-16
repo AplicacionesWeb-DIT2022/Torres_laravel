@@ -12,7 +12,7 @@ class Torneo extends Model
     
     public function club()
     {
-        return $this->belongsToMany(Club::class);
+        return $this->belongsToMany(Club::class,'torneo_clubs','Torneo','Equipo');
     }
 
 }

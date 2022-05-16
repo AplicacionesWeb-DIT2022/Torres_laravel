@@ -1,6 +1,6 @@
 @extends('todos.app')
 @section('content')
-<div >
+<div>
     <form action="{{url('/club/'.$club->id)}}" method="post" enctype="multipart/form-data">
         @csrf
         {{method_field('PATCH') }}

@@ -1,17 +1,17 @@
 
 @extends('todos.app')
 @section('content')
-
-<h1>    Mostrar la lista de clubes  </h1>
+<h1>    Mostrar la lista de Torneos  </h1>
 @if (Session::has('mensaje'))
     <div class="alert alert-success" role="alert">
         {{Session::get('mensaje')}}
     </div>
-    
 @endif
+{{$torneos}}
 <table class="table table-bordered border-primary ">
     <thead>
         <tr>
+            
             <th>#</th>
             <th>Escudo</th>
             <th>Nombre</th>
@@ -20,23 +20,18 @@
         </tr>
     </thead>
     <tbody>
-        
-        @foreach ( $clubes as $club )
+
+        @foreach ( $torneos as $torneos )
             
         
         <tr>
-            <td> {{$club->id}}</td>
-            {{-- <td>{{$club->escudo}}</td> --}}
-            <td >
-                <img src="{{asset('storage').'/'.$club->Escudo}}" width="100" alt="Sin escudo">
-            </td>
-            
-            <td>{{$club->Nombre}}</td>
+            <td>{{$torneos->anio}}</td>            
+            <td>{{$torneos->Nombre}}</td>
             
             <td> 
-                <a href="{{url('/club/'.$club->id.'/edit')}}" class="btn btn-warning"> Editar </a>  
-                <a href="{{url('/club/show/'.$club->id)}}" class="btn btn-info"> Ver</a>
-                <form action="{{url('/club/'.$club->id)}}" class="d-inline" method="post">
+                <a href="{{url('/clubTorneo/'.$torneos->id.'/edit')}}" class="btn btn-warning"> Editar </a>  
+                <a href="{{url('/clubTorneo/show/'.$torneos->id)}}" class="btn btn-info"> Ver</a>
+                <form action="{{url('/clubTorneo/'.$torneos->id)}}" class="d-inline" method="post">
                     @csrf
                     {{@method_field('DELETE')}}
                     <input class="btn btn-danger" type="submit" onclick="return confirm('¿Desea borrar?')" value="Borrar">
@@ -45,7 +40,7 @@
             </td>
         </tr>
         @endforeach
-    </tbody>
+    </tbody> 
   </table>
-{!! $clubes->links()!!}
+{{-- {!! $torneos->links()!!} --}}
   @endsection

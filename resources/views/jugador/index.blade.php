@@ -8,6 +8,9 @@
     </div>
     
 @endif
+<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <a href="{{url('jugadores/pdf')}}" class="btn btn-primary me-md-2" type="button" >pdf</a>
+  </div>    
 <table class="table table-bordered border-primary ">
     <thead>
         <tr>

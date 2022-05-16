@@ -18,3 +18,6 @@ php artisan migrate:status
 
 Para subir la base de datos a heroku
 heroku pg:push postgres://postgres:12345@localhost:5432/laravel DATABASE_URL --app laraveltorres
+
+
+php artisan route:list

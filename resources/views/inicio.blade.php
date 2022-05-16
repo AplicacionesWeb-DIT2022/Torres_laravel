@@ -13,26 +13,33 @@
     <div class="container">
         <hr>
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-4 btn-group-vertical">
                 <h2>Crear Club</h2>
                 <p>Crear un club para su iniciacion en el torneo</p>
-                <button  type="button" class="btn btn-outline-primary"
-                <p>
-                    <a class="btn btn-default" href="/club/create" role="button">Club&raquo;</a></p>
+                <button  type="button" class="btn btn-outline-primary">
+                <a class="btn btn-default" href="/club/create" role="button">Club&raquo;</a>
                 </button>
+                <button  type="button" class="btn btn-outline-primary">
+                <a class="btn btn-default" href="/club/" role="button">Ver &raquo;</a></button>
                 </div>
-            <div class="col-md-4">
+            <div class="col-md-4 btn-group-vertical">
                 <h2>Crear Torneo</h2>
                 <p>Podras crear torneos para distintos eventos</p>
-                <button  type="button" class="btn btn-outline-success"
-                <p><a class="btn btn-default" href="/torneo/create" role="button">Torneo &raquo;</a></p>
+                <button  type="button" class="btn btn-outline-success">
+                    <a class="btn btn-default" href="/clubTorneo/create" role="button">Crear &raquo;</a>
+                </button>
+                <br>
+                <button  type="button" class="btn btn-outline-success">
+                    <a class="btn btn-default" href="/clubTorneo/" role="button">Ver &raquo;</a>
                 </button>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 btn-group-vertical">
                 <h2>Opciones de Jugador</h2>
                 <p>ABM de Jugadores</p>
-                <button  type="button" class="btn btn-outline-danger"
-                <p><a class="btn btn-default" href="/jugador/create" role="button">Jugadores &raquo;</a></p></button>
+                <button  type="button" class="btn btn-outline-danger">
+                <a class="btn btn-default" href="/jugador/create" role="button">Jugadores &raquo;</a></button>
+                <button  type="button" class="btn btn-outline-danger">
+                <a class="btn btn-default" href="/jugador/" role="button">Ver &raquo;</a></button>
             </div>
         </div>
         <hr>
