@@ -15,8 +15,9 @@ return new class extends Migration
     {
         Schema::create('campeonatos', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table-> string('Nombre');
-            $table-> string('anio');
+            $table-> string('Nombre')->unique();
+            $table-> string('Anio');
+            $table-> string('Descripcion')->nullable();
             $table->timestamps();
         });
     }

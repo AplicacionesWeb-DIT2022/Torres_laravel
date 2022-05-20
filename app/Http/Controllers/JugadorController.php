@@ -6,6 +6,8 @@ use App\Models\Jugador;
 
 use App\Models\Club;
 
+use PDF;
+
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Storage ;
@@ -23,10 +25,21 @@ class JugadorController extends Controller
     public function index()
     {
         //
-        $datos['jugadores']= Jugador::paginate(5);
-        return view('jugador.index', $datos);
+        $jugadores= Jugador::paginate(10);
+        $cantidad = Jugador::count();
+        return view('jugador.index', compact('jugadores','cantidad'));
     }
 
+    public function search(){
+        $jugadores_buscar= $_GET['query'];
+        Log::debug($jugadores_buscar);
+        $equipos_buscar = $_GET['queryEquipo'];
+        Log::debug($equipos_buscar);
+        $jugadores = Jugador::where('Dni','LIKE', '%'.$jugadores_buscar.'%')->paginate(100);
+        //$jugadores = Jugador::where('Equipo','LIKE', '%'.$equipos_buscar.'%')->paginate(100);
+
+        return view('jugador.index', compact('jugadores'));
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -40,8 +53,13 @@ class JugadorController extends Controller
 
     public function pdf()
     {
-        $jugadores = Jugador::paginate(5);
-        return view('jugador.pdf',compact('jugadores'));
+        $jugadores = Jugador::paginate();
+        $pdf = PDF::loadView('jugador.pdf',['jugadores'=>$jugadores]);
+
+        // return $pdf->stream();
+
+        return $pdf->download('___jugadores.pdf');
+       //return view('jugador.pdf',compact('jugadores'));
     }
     public function create()
     {
@@ -63,11 +81,15 @@ class JugadorController extends Controller
             'Nombre'=> 'required|string|max:100',
             'Apellido'=> 'required|string|max:100',
             'Equipo'=> 'required|string|max:100',
-            //'Foto'=> 'required|max:100000|mimes:jpeg,png,jpg',
-            'Dni'=> 'required|max:100',
+            'Foto'=> 'max:100000|mimes:jpeg,png,jpg',
+            'Dni'=> 'required|unique:jugadors|integer|max:100000000',
         ];
         $mensaje=[
             'required'=> 'El :attribute es requerido',
+            'max' => 'El :attribute supera los 9 numeros',
+            'unique' => 'El :attribute pertence a otro jugador',
+            'integer' => 'El :attribute no debe contener letras',
+            
             //'Foto.required' => 'La Foto es requerida' 
         ];
         $this->validate($request,$validator,$mensaje);
@@ -178,7 +200,7 @@ class JugadorController extends Controller
     public function indexApi()
     {
         //
-        $datos['jugadores']= Jugador::paginate(5);
+        $datos= Jugador::all();
         return $datos-> tojson();
         //return view('jugador.index', $datos);
     }

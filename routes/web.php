@@ -5,7 +5,8 @@ use app\Http\Controllers\TodosController;
 use App\Http\Controllers\JugadorController;
 use App\Http\Controllers\ClubController;
 use App\Http\Controllers\TorneoController;
-use App\Http\Controllers\ClubCampeonatoController;
+use App\Http\Controllers\TorneoClubController;
+use App\Http\Controllers\HomeController;
 
 
 /*
@@ -38,11 +39,12 @@ Auth::routes(['reset'=>false]);
 
 
 Route::get('/home', [JugadorController::class, 'index'])->name('home');
+Route::get('/search', [JugadorController::class, 'search']);
 
 
 Route::group(['middleware'=> 'auth'],function(){
-    Route::get('/', [JugadorController::class, 'laravel'])->name('home');
-    Route::get('/jugadores/pdf',[JugadorController::class, 'pdf']) ->name('libros.pdf');
+    Route::get('/', [HomeController::class, 'index'])->name('home');
+    Route::get('/jugadores/pdf',[JugadorController::class, 'pdf']) ->name('jugadores.pdf');
 });
 
 #                       Route Club
@@ -64,10 +66,10 @@ Route::resource('/torneo', App\Http\Controllers\TorneoController ::class);
 
 
 
-#                       Route club_torneo
+#                       Route torneoClub
 
-Route::resource('/clubTorneo',ClubCampeonatoController::class)->middleware('auth');
+Route::resource('/torneoClub',TorneoClubController::class)->middleware('auth');
 
-Route::resource('/clubTorneo', App\Http\Controllers\ClubCampeonatoController ::class);
+Route::resource('/torneoClub', App\Http\Controllers\TorneoClubController ::class);
 
-Route::get('/clubTorneo/show/{id}',[ClubCampeonatoController::class,'show']); //todos los jugadores
+Route::get('/torneoClub/show/{id}',[TorneoClubController::class,'show']); //todos los jugadores

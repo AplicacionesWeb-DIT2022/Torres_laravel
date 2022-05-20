@@ -1,9 +1,9 @@
 @extends('todos.app')
 @section('content')
- <div class="card bg-dark text-white">
+ <div class="card bg-dark text-white text-center">
     <img src= "{{asset('storage').'/'.$club->Escudo}}" class="mx-auto d-block " width="100"  alt="Escudo">
       <h1 class="card-title">{{$club->Nombre}}</h1>
-      <p class="card-text">Una descripcion</p>
+      <p class="card-text">{{$club->Descripcion}}</p>
       <p class="card-text">Una descripcion mas descriptiva</p>
       <div class="d-grid gap-2 d-md-flex justify-content-md-end">
         <a href="{{url('/club/').'/'.$club->id.'/edit'}}" class="btn btn-primary me-md-2" type="button" >Editar</a>

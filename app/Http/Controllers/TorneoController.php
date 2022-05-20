@@ -38,11 +38,13 @@ class TorneoController extends Controller
     public function store(Request $request)
     {
         $validator=[
-            'Nombre'=> 'required|string|max:100',
-            'anio'=> 'required|string|max:100',
+            'Nombre'=> 'required|unique:torneos|string|max:100',
+            'Anio'=> 'required|string|max:100',
+
         ];
         $mensaje=[
             'required'=> 'El :attribute es requerido', 
+            'unique'=> 'El :attribute nombre ya existe', 
         ];
         $this->validate($request,$validator,$mensaje);
         //
@@ -87,7 +89,7 @@ class TorneoController extends Controller
         //Validando datos 
         $validator=[
             'Nombre'=> 'required|string|max:100',
-            'anio' => 'required|string|max:100',
+            'Anio' => 'required|string|max:100',
         ];
         $mensaje=[
             'required'=> 'El :attribute es requerido',
@@ -121,4 +123,25 @@ class TorneoController extends Controller
         return redirect('torneo')->whit('mensaje','Torneo borrado correctamente');
 
     }
+
+
+    //APIIIIIIIIIIIIIIIIi
+    public function indexApi()
+    {
+        $datos= Torneo::all();
+        return $datos->tojson();
+        //return view('torneo.index', $datos);
+
+    }
+    public function showApi($id)
+    {
+        $torneo = Torneo::find($id);
+        $club= ClubCampeonato::where('Equipo',$club->id)->get();
+        #return ($club, $jugadores)-> tojson();
+        return response()->json([
+            'Club' => $club,
+            'Torneo' => $jugadores,
+        ]);
+    }
+
 }

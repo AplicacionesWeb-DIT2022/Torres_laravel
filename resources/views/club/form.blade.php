@@ -16,6 +16,7 @@
     <label for="Nombre" class="form-label" >Nombre</label>
     <input type="text" class="form-control" name="Nombre" value="{{isset($club->Nombre)?$club->Nombre:old('Nombre') }}" id="Nombre" placeholder="Nombre" >
 </div>
+
 <div class="mb-3">
     <label for="escudo" class="form-label">Escudo del club</label>
     @if (isset($club->Escudo))

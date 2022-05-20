@@ -25,13 +25,13 @@
             
         
         <tr>
-            <td>{{$torneos->anio}}</td>            
-            <td>{{$torneos->Nombre}}</td>
+            <td>{{$torneos->Torneo}}</td>            
+            <td>{{$torneos->Equipo}}</td>
             
             <td> 
-                <a href="{{url('/clubTorneo/'.$torneos->id.'/edit')}}" class="btn btn-warning"> Editar </a>  
-                <a href="{{url('/clubTorneo/show/'.$torneos->id)}}" class="btn btn-info"> Ver</a>
-                <form action="{{url('/clubTorneo/'.$torneos->id)}}" class="d-inline" method="post">
+                <a href="{{url('/torneoClub/'.$torneos->id.'/edit')}}" class="btn btn-warning"> Editar </a>  
+                <a href="{{url('/torneoClub/show/'.$torneos->id)}}" class="btn btn-info"> Ver</a>
+                <form action="{{url('/torneoClub/'.$torneos->id)}}" class="d-inline" method="post">
                     @csrf
                     {{@method_field('DELETE')}}
                     <input class="btn btn-danger" type="submit" onclick="return confirm('¿Desea borrar?')" value="Borrar">

@@ -16,12 +16,12 @@ return new class extends Migration
         Schema::create('jugadors', function (Blueprint $table) {
             $table->id();
 
+            $table -> string('Dni')->unique();
             $table -> string('Nombre');
             $table -> string('Apellido');
-            #$table -> string('Equipo');
             $table -> bigInteger('Equipo')->unsigned();
             $table -> string('Foto');
-            $table -> string('Dni');
+            $table -> string('Descripcion',100)->nullable();
             $table->timestamps();
             $table->foreign('Equipo')->references('id')->on('clubs')->onDelete('cascade');
         });

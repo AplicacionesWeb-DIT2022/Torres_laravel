@@ -11,8 +11,8 @@
 @endif
 <div class="container">
     <div class="mb-3">
-        <label for="anio" class="form-label">Año</label>
-        <input type="text" class="form-control" id="anio" placeholder="anio" value="{{isset($torneo->anio)?$torneo->anio:old('anio') }}" name="anio">
+        <label for="Anio" class="form-label">Año</label>
+        <input type="text" class="form-control" id="Anio" placeholder="Anio" value="{{isset($torneo->Anio)?$torneo->Anio:old('Anio') }}" name="Anio">
     </div>
 <div class="mb-3">
     <label for="Nombre" class="form-label" >Nombre</label>

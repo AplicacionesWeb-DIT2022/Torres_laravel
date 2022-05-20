@@ -2,7 +2,8 @@
 @extends('todos.app')
 @section('content')
 
-<h1>    Mostrar la lista de clubes  </h1>
+<h1 class="text-center">LISTA DE EQUIPOS  </h1>
+
 @if (Session::has('mensaje'))
     <div class="alert alert-success" role="alert">
         {{Session::get('mensaje')}}

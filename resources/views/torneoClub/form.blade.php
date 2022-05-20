@@ -17,8 +17,12 @@
         <input type="text" class="form-control" id="Nombre" name="Nombre" placeholder="Nombre">
     </div>
     <div class="form-group">
-        <label for="anio">Año</label>
-        <input type="text" class="form-control" id="anio" name="anio" placeholder="Año">
+        <label for="Anio">Año</label>
+        <input type="text" class="form-control" id="Anio" name="Anio" placeholder="Año">
+    </div>
+    <div class="form-group">
+        <label for="Descripcion">Descripcion</label>
+        <input type="text" class="form-control" id="Descripcion" name="Descripcion" placeholder="Descripcion">
     </div>
     
     <br>

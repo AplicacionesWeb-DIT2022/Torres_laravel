@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Club_campeonato;
+use App\Models\TorneoClub;
 use Illuminate\Http\Request;
 use App\Models\Club;
 use App\Models\Torneo;
 use Illuminate\Support\Facades\Log;
 
-class ClubCampeonatoController extends Controller
+class TorneoClubController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +17,11 @@ class ClubCampeonatoController extends Controller
      */
     public function index()
     {
-        $datos['torneos']= Torneo::paginate(5);
-        return view('club_torneo.index', $datos);
+      
+
+        $datos['torneos'] = Torneo::paginate();
+        Log::debug($datos);
+        return view('torneo.index', $datos);
 
     }
 
@@ -30,7 +33,7 @@ class ClubCampeonatoController extends Controller
     public function create()
     {
         $club = Club::all();   
-        return view('club_torneo.crear', compact('club'));
+        return view('torneoClub.crear', compact('club'));
     }
 
     /**
@@ -43,43 +46,40 @@ class ClubCampeonatoController extends Controller
     {
         $datosTorneo = [
             'Nombre' => $request->get('Nombre'),
-            'anio' =>  $request->get('anio')
+            'Anio' =>  $request->get('Anio')
         ];
        
         //Torneo creado,
         $torneo = new Torneo;
         $torneo->Nombre= $datosTorneo['Nombre'];
-        $torneo->anio= $datosTorneo['anio'];
+        $torneo->Anio= $datosTorneo['Anio'];
         $torneo->save();
         //       ClubCampeonato::insert($datosClubes->id);        
         $torneo->club()->attach(array_values($request->get('Equipos')));
-        return redirect('clubTorneo')->with('mensaje','Club se cargo correctamente');
-        //return view('club_torneo.show',compact('torneo'));
+        return redirect('torneoClub')->with('mensaje','Club se cargo correctamente');
+        //return view('torneoClub.show',compact('torneo'));
         //return redirect('club', compact('datosClubes'))->with('mensaje','Club se cargo correctamente');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\club_campeonato  $club_campeonato
+     * @param  \App\Models\torneoClub  $torneoClub
      * @return \Illuminate\Http\Response
      */
     public function show($idTorneo)
     {
-        $torneo = Torneo::find($idTorneo);
-        Log::debug($torneo);
-        // $clubes= cluborneo::where('Torneo',$campeonato->$club)->get();
-        // $club = Club::find($id);
-        // $jugadores= Jugador::where('Equipo',$club->id)->get();
-        #return ($club, $jugadores)-> tojson();
-        return view('club_torneo.show',compact('torneo'));
+        $equipos = TorneoClub::select('Equipo')->where('Torneo',$idTorneo)->get();
+        $torneo = Torneo::find($idTorneo); //datos del torneo 
+        $equipos= $torneo->club;
+        return view('torneoClub.show',compact('torneo','equipos'));
  
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\club_campeonato  $club_campeonato
+     * @param  \App\Models\torneoClub  $torneoClub
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -92,14 +92,14 @@ class ClubCampeonatoController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\club_campeonato  $club_campeonato
+     * @param  \App\Models\torneoClub  $torneoClub
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request,$id)
     {
         $validator = [
             'Nombre' => 'required|string|max:100',
-            'anio' => 'required|string|max:100'
+            'Anio' => 'required|string|max:100'
         ];
         $mensaje = [
             'required' => 'El :attribite es requerido'
@@ -114,14 +114,14 @@ class ClubCampeonatoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\club_campeonato  $club_campeonato
+     * @param  \App\Models\torneoClub  $torneoClub
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
         $torneo = Torneo::find($id)->delete();
 
-        return redirect()->route('clubTorneo.index')
+        return redirect()->route('torneoClub.index')
             ->with('success', 'Torneo eliminado correctamente');
 
     }

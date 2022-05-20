@@ -26,11 +26,11 @@
                 <h2>Crear Torneo</h2>
                 <p>Podras crear torneos para distintos eventos</p>
                 <button  type="button" class="btn btn-outline-success">
-                    <a class="btn btn-default" href="/clubTorneo/create" role="button">Crear &raquo;</a>
+                    <a class="btn btn-default" href="/torneoClub/create" role="button">Crear &raquo;</a>
                 </button>
                 <br>
                 <button  type="button" class="btn btn-outline-success">
-                    <a class="btn btn-default" href="/clubTorneo/" role="button">Ver &raquo;</a>
+                    <a class="btn btn-default" href="/torneoClub/" role="button">Ver &raquo;</a>
                 </button>
             </div>
             <div class="col-md-4 btn-group-vertical">

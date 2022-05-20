@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Club;
 use App\Models\Jugador;
 use Illuminate\Http\Request;
-
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Log;
 /**
@@ -21,7 +20,8 @@ class ClubController extends Controller
      */
     public function index()
     {
-        $datos['clubes']= Club::paginate(5);
+        $datos['clubes']= Club::paginate();
+        Log::debug($datos);
         return view('club.index', $datos);
     }
 
@@ -45,12 +45,13 @@ class ClubController extends Controller
     {   
         //Validando datos
         $validator=[
-            'Nombre'=> 'required|string|max:100',
-            'Escudo'=> 'required|max:100000|mimes:jpeg,png,jpg',
+            'Nombre'=> 'required|unique:clubs|string|max:100',
+            //'Escudo'=> 'required|max:100000|mimes:jpeg,png,jpg',
         ];
         $mensaje=[
             'required'=> 'El :attribute es requerido',
-            'Escudo.required' => 'El escudo es requerido' 
+            'unique'=> 'El :attribute pertenece a otro equipo',
+            //'Escudo.required' => 'El escudo es requerido' 
         ];
         $this->validate($request,$validator,$mensaje);
         //
@@ -59,6 +60,8 @@ class ClubController extends Controller
         if ($request->hasFile('Escudo')){
             #si hay foto alteramos el campo usamos el nombre 
             $datosClubes['Escudo'] = $request->file('Escudo')->store('uploads','public');
+        }else{
+            $datosClubes['Escudo']= 'club/escudoAvatar.png';
         }
         Club::insert($datosClubes);
         return redirect('club')->with('mensaje','Club se cargo correctamente');
@@ -125,21 +128,17 @@ class ClubController extends Controller
         $mensaje=[
             'required'=> 'El :attribute es requerido',
         ];
-        if ($request->hasFile('Escudo')){
-            $validator=['Escudo'=> 'required|max:100000|mimes:jpeg,png,jpg',];
-            $mensaje=[
-                'Escudo.required' => 'Es escudo es requerido', 
-            ];
-        }
+       
         $this->validate($request,$validator,$mensaje);
         Log::debug($request->toArray());
         #Guardo los datos en la variable datosJugador
         $datosClub = request()->except(['_token','_method']);
         #Pregunto si existe
-        if ($request->hasFile('Escudo')){
-            
+        if ($request->hasFile('Escudo')){           
             $club= Club::findOrFail($id);
-            Storage::delete('public/'.$club->Foto);
+            if ($club->Foto != 'club/escudoAvatar.png'){
+                Storage::delete('public/'.$club->Foto);
+            }
             #si hay foto alteramos el campo usamos el nombre 
             $datosClub['Escudo']=$request->file('Escudo')->store('uploads','public');
         }
@@ -174,7 +173,7 @@ class ClubController extends Controller
 
     public function indexApi()
     {
-        $datos['clubes']= Club::paginate(5);
+        $datos= Club::all();
         return $datos-> tojson();  
         //return view('club.index', $datos);
     }

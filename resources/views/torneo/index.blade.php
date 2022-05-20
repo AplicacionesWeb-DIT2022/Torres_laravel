@@ -23,10 +23,10 @@
         <tr>
             <td> {{$torneo->id}}</td>
             {{-- <td>{{$jugador->Foto}}</td> --}}
-            <td>{{$torneo->anio}}</td>
+            <td>{{$torneo->Anio}}</td>
             <td>{{$torneo->Nombre}}</td>
-            
             <td> <a href="{{url('/torneo/edit/'.$torneo->id)}}" class="btn btn-warning"> Editar </a>  
+                <a href="{{url('/torneoClub/show/'.$torneo->id)}}" class="btn btn-success"> Mostrar </a>  
                 <form action="{{url('/torneo/'.$torneo->id)}}" class="d-inline" method="post">
                     @csrf
                     {{@method_field('DELETE')}}
