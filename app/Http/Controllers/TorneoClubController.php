@@ -24,7 +24,13 @@ class TorneoClubController extends Controller
         return view('torneo.index', $datos);
 
     }
+    public function search(){
+        $torneo_buscar= $_GET['query'];
+        $torneos = Torneo::where('Nombre','LIKE', '%'.$torneo_buscar.'%')->paginate(100);
+        //$jugadores = Jugador::where('Equipo','LIKE', '%'.$equipos_buscar.'%')->paginate(100);
 
+        return view('torneoClub.index', compact('torneos'));   
+    }
     /**
      * Show the form for creating a new resource.
      *

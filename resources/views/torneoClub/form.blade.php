@@ -27,12 +27,20 @@
     
     <br>
         <h2> Paso 2: Agregar equipos</h2>
-        @foreach ($club as $clubes )
-        <div class="form-switch form-check">
-            <input class="form-check" type="checkbox" id="id" name="Equipos[]" value="{{$clubes->id}}"> 
-            <label class="form-check-label"> {{$clubes->Nombre}} </label>
-        </div> 
-        @endforeach
+        <div class="card-group text-center">
+            @foreach ($club as $clubes )
+            <div class="row">
+                <div class="col" style="margin-left:25px">
+                    <div class="card-body form-switch form-check">
+                        <label class="btn btn-primary ">{{$clubes->Nombre}} 
+                            <input class="card-text form-check " type="checkbox" id="id" name="Equipos[]" checked value="{{$clubes->id}}"> 
+                        </label>
+                    </div>
+                </div>    
+            </div>
+            @endforeach
+        </div>
+        
         <input class="form-control form-control-lg"  type="submit" value="{{$modo}} datos">
         <br>
         

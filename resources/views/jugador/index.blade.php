@@ -38,6 +38,7 @@
       </svg>
     </a>
   </div>
+  
   <div class="card-group container-fluid text-center"  >
     @foreach ( $jugadores as $jugador )
     <br>

@@ -50,6 +50,7 @@ Route::group(['middleware'=> 'auth'],function(){
 #                       Route Club
 
 Route::resource('club', App\Http\Controllers\ClubController ::class);
+Route::get('/club/search', [ClubController::class, 'search']);
 
 // Route::get('/club/edit/{id}/',[ClubController::class,'edit']); //todos los jugadores
 

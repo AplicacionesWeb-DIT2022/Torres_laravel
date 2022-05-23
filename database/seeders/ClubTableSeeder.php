@@ -4,17 +4,19 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Club;
 
-class DatabaseSeeder extends Seeder
+class ClubTableSeeder extends Seeder
 {
     /**
-     * Seed the application's database.
+     * Run the database seeds.
      *
      * @return void
      */
     public function run()
     {
-        \App\Models\Jugador::factory(10000)->create();
-        //$this->call(ClubTableSeeder::class);
+        $count = 1000;
+        factory(Club::class, $count)->create();
+        //
     }
 }

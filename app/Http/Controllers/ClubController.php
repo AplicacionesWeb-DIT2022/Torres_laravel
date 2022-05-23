@@ -92,6 +92,13 @@ class ClubController extends Controller
         ]);
     }
 
+    public function search(){
+        $club_buscar= $_GET['query'];
+        $clubes = Club::where('Nombre','LIKE', '%'.$club_buscar.'%')->paginate(100);
+        
+        return view('club.index', compact('clubes'));
+    } 
+
     /**
      * Show the form for editing the specified resource.
      *

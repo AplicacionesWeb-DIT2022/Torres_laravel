@@ -6,7 +6,7 @@ use App\Http\Controllers\JugadorController;
 use App\Http\Controllers\ClubController;
 use App\Http\Controllers\TorneoController;
 
-use App\Http\Controllers\ClubTorneoController;
+use App\Http\Controllers\TorneoClubController;
 
 /*
 |--------------------------------------------------------------------------
@@ -59,15 +59,15 @@ Route::delete('/torneo/destroy/{id}', [TorneoController::class,'destroyApi']); /
 
 
 //                          Club_campeonato
-Route::get('/clubTorneo/show/{id}',[ClubTorneoController::class,'showApi']); //todos los Club_torneo
+Route::get('/torneoClub/show/{id}',[TorneoClubController::class,'showApi']); //todos los Club_torneo
 
-Route::get('/clubTorneo',[ClubTorneoController::class,'indexApi']); //todos los Club_torneo
+Route::get('/torneoClub',[TorneoClubController::class,'indexApi']); //todos los Club_torneo
 
-Route::post('/clubTorneo', [ClubTorneoController::class,'storeApi']); //Guardar Club_torneo
+Route::post('/torneoClub', [TorneoClubController::class,'storeApi']); //Guardar Club_torneo
 
-Route::put('/clubTorneo/update/{id}', [ClubTorneoController::class,'updateApi']); //actualizar
+Route::put('/torneoClub/update/{id}', [TorneoClubController::class,'updateApi']); //actualizar
 
-Route::delete('/clubTorneo/destroy/{id}', [ClubTorneoController::class,'destroyApi']); // eliminar
+Route::delete('/torneoClub/destroy/{id}', [TorneoClubController::class,'destroyApi']); // eliminar
 
 
 
