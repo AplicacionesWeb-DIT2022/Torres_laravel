@@ -50,10 +50,24 @@ class TorneoClubController extends Controller
      */
     public function store(Request $request)
     {
+        $validator=[
+            'Nombre'=> 'required|string|max:100',
+            'Anio'=> 'required|integer',
+        ];
+        $mensaje=[
+            'required'=> 'El :attribute es requerido',
+            'max' => 'El :attribute supera el maximo posible',
+            'integer' => 'El :attribute no debe contener letras',
+            
+            //'Foto.required' => 'La Foto es requerida' 
+        ];
+        $this->validate($request,$validator,$mensaje);
+
         $datosTorneo = [
             'Nombre' => $request->get('Nombre'),
             'Anio' =>  $request->get('Anio')
         ];
+
        
         //Torneo creado,
         $torneo = new Torneo;

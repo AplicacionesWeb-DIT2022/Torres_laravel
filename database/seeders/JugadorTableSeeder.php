@@ -15,8 +15,9 @@ class JugadorTableSeeder extends Seeder
      */
     public function run()
     {
-        $count = 1000000;
-        factory(Club::class, $count)->create();
+        $count = 10;
+        \App\Models\Jugador::factory($count)->create();
+        //factory(Club::class, $count)->create();
         //
     }
 }

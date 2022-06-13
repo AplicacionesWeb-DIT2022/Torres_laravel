@@ -341,6 +341,7 @@ class JugadorController extends Controller
     {
         //
         $jugador= Jugador::findOrFail($id);
+
         if(Storage::delete('public/'.$jugador->Foto)){
             Jugador::destroy($id);
         }

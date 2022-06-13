@@ -59,7 +59,7 @@ Route::delete('/torneo/destroy/{id}', [TorneoController::class,'destroyApi']); /
 
 
 //                          Club_campeonato
-Route::get('/torneoClub/show/{id}',[TorneoClubController::class,'showApi']); //todos los Club_torneo
+Route::get('/torneoClub/show/{id}',[TorneoClubxController::class,'showApi']); //todos los Club_torneo
 
 Route::get('/torneoClub',[TorneoClubController::class,'indexApi']); //todos los Club_torneo
 

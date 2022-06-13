@@ -30,6 +30,7 @@ php artisan route:list
 ##################
 modificar tabla en la base de datos
 php artisan make:migration add_nombreCampo_to_tabla
+
 voy a la funcion app y agrego solo la columna que necesito
 schema::table()
 campo agregado
@@ -37,3 +38,7 @@ campo agregado
 agrego ademas el down 
 drop column
 luego php artisan migrate
+
+
+################## Llnando base de datos
+php artisan db:seed --class=JugadorTableSeeder

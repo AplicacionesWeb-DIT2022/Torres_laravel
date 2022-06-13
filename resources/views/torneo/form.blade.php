@@ -18,7 +18,10 @@
     <label for="Nombre" class="form-label" >Nombre</label>
     <input type="text" class="form-control" name="Nombre" value="{{isset($torneo->Nombre)?$torneo->Nombre:old('Nombre') }}" id="Nombre" placeholder="Nombre" >
 </div>
-
+<div class="mb-3">
+    <label for="Descripcion" class="form-label" >Descripcion</label>
+    <input type="text" class="form-control" name="Nombre" value="{{isset($torneo->Descripcion)?$torneo->Descripcion:old('Descripcion') }}" id="Descripcion" placeholder="Nombre" required>
+</div>
  
 <div class="mb-3">
     <input class="form-control form-control-lg"  type="submit" value="{{$modo}} datos">

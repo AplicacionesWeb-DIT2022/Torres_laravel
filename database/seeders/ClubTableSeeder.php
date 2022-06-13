@@ -15,8 +15,9 @@ class ClubTableSeeder extends Seeder
      */
     public function run()
     {
-        $count = 1000;
-        factory(Club::class, $count)->create();
+        $count = 4;
+        \App\Models\Club::factory($count)->create();
+        //factory(Club::class, $count)->create();
         //
     }
 }

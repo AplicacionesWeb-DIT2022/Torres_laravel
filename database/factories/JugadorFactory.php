@@ -22,7 +22,7 @@ class JugadorFactory extends Factory
             'Dni' => $this->faker->unique()->numberBetween($min = 1000000, $max = 90000000),
             'Nombre' => $this->faker->name(),
             'Apellido' => $this->faker->name(),
-            'Equipo' => $this->faker->numberBetween($min = 7, $max =106),
+            'Equipo' => $this->faker->numberBetween($min = 1, $max =4),
             'Foto' => $this->faker->name(),
         ];
 
