@@ -50,6 +50,7 @@ Route::group(['middleware'=> 'auth'],function(){
 #                       Route Club
 
 Route::resource('club', App\Http\Controllers\ClubController ::class);
+
 Route::get('/club/search', [ClubController::class, 'search']);
 
 // Route::get('/club/edit/{id}/',[ClubController::class,'edit']); //todos los jugadores
@@ -61,16 +62,18 @@ Route::get('/club/show/{id}',[ClubController::class,'show']); //todos los jugado
 
 #Route::get('/torneo', TorneoController::class,'index')->name('home');
 
-Route::resource('/torneo',TorneoController::class)->middleware('auth');
+// Route::resource('/torneo',TorneoController::class)->middleware('auth');
 
-Route::resource('/torneo', App\Http\Controllers\TorneoController ::class);
+// Route::resource('/torneo', App\Http\Controllers\TorneoController ::class);
 
 
 
 #                       Route torneoClub
 
-Route::resource('/torneoClub',TorneoClubController::class)->middleware('auth');
+// Route::resource('/torneoClub',TorneoClubController::class);
 
 Route::resource('/torneoClub', App\Http\Controllers\TorneoClubController ::class);
 
-Route::get('/torneoClub/show/{id}',[TorneoClubController::class,'show']); //todos los jugadores
+Route::get('/torneoClub/show/{id}',[TorneoClubController::class,'show']); //todos los torneos
+
+Route::delete('/torneoClub/{id}', [TorneoClubController::class,'destroy']);

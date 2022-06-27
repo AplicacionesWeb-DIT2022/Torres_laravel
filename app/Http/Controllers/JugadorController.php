@@ -33,12 +33,9 @@ class JugadorController extends Controller
     public function search(){
         $jugadores_buscar= $_GET['query'];
         Log::debug($jugadores_buscar);
-        $equipos_buscar = $_GET['queryEquipo'];
-        Log::debug($equipos_buscar);
-        $jugadores = Jugador::where('Dni','LIKE', '%'.$jugadores_buscar.'%')->paginate(100);
-        //$jugadores = Jugador::where('Equipo','LIKE', '%'.$equipos_buscar.'%')->paginate(100);
-
-        return view('jugador.index', compact('jugadores'));
+        $jugadores = Jugador::where('Dni','LIKE', '%'.$jugadores_buscar.'%')->paginate(10);
+        $cantidad = Jugador::where('Dni','LIKE', '%'.$jugadores_buscar.'%')->count();
+        return view('jugador.index', compact('jugadores','cantidad'));
     }
     /**
      * Show the form for creating a new resource.
@@ -172,8 +169,9 @@ class JugadorController extends Controller
         $jugador= Jugador::findOrFail($id);
         
         //return view('jugador.edit',compact('jugador') );
-
-        return redirect('jugador')->with('mensaje','Jugador actualizado correctamente');
+        return redirect()->route('jugador.index')
+        ->with('success', 'Jugador modificado correctamente'); 
+        //return redirect('jugador')->with('mensaje','Jugador actualizado correctamente');
     }
 
     /**
@@ -190,7 +188,10 @@ class JugadorController extends Controller
             Jugador::destroy($id);
         }
 
-        return redirect('jugador')->whit('mensaje','Empleado borrado correctamente');
+        return redirect()->route('jugador.index')
+        ->with('success', 'Jugador eliminado correctamente'); 
+        
+        //redirect('/jugador')->whit('mensaje','Empleado borrado correctamente');
     }
 
     // ##################APIS###############

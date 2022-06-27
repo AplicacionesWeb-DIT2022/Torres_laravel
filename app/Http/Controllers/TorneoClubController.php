@@ -105,7 +105,7 @@ class TorneoClubController extends Controller
     public function edit($id)
     {
         $torneo = Torneo::findOrFail($id);
-        return view('torneo.edit', compact('torneo'));
+        return view('torneoClub.edit', compact('torneo'));
     }
 
     /**

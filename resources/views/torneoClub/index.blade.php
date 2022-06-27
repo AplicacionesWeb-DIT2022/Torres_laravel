@@ -8,6 +8,7 @@
     </div>
 @endif
 {{$torneos}}
+
 <table class="table table-bordered border-primary ">
     <thead>
         <tr>
@@ -29,7 +30,7 @@
             <td>{{$torneos->Equipo}}</td>
             
             <td> 
-                <a href="{{url('/torneoClub/'.$torneos->id.'/edit')}}" class="btn btn-warning"> Editar </a>  
+                
                 <a href="{{url('/torneoClub/show/'.$torneos->id)}}" class="btn btn-info"> Ver</a>
                 <form action="{{url('/torneoClub/'.$torneos->id)}}" class="d-inline" method="post">
                     @csrf

@@ -18,7 +18,6 @@
   <nav class="navbar justify-content-md-end bg-dark navbar-dark" >
     <form class="d-flex" type="get" action="{{url('/search')}}" >
       <input class="form-control me-2 float-end " name="query" placeholder="Dni" type="search"  aria-label="Search">
-      <input class="form-control me-2 float-end " name="queryEquipo" placeholder="Equipo" type="search">
       <button class="btn btn-primary float-end" type="submit" style="margin-right: 100px">Buscar</button>
     </form>
   </nav>

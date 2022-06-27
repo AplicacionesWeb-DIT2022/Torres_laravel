@@ -73,7 +73,7 @@ class TorneoController extends Controller
     public function edit($id)
     {
         $torneo = Torneo::findOrFail($id);
-        return view('torneo.edit', compact('torneo'));
+        return view('torneoClub.edit', compact('torneo'));
     }
 
     /**
@@ -116,11 +116,8 @@ class TorneoController extends Controller
      */
     public function destroy($id)
     {
-        //
-        $torneo= Torneo::findOrFail($id);
-            Torneo::destroy($id);
-
-        return redirect('torneo')->whit('mensaje','Torneo borrado correctamente');
+        $torneo= TorneoClub::find($id)->delete();
+        return redirect()->route('torneoClub.index')->whit('mensaje','Torneo borrado correctamente');
 
     }
 

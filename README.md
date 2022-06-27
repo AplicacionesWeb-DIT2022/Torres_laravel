@@ -8,7 +8,7 @@
 </p>
 
 El proyecto a realizar es de un torneo de Futbol, donde se cargaran equipos
-con sus respectivos jugadores. la intencion es, una vez cargados los equipos
+con sus respectivos jugadores. La intencion es, una vez cargados los equipos
 con sus plantillas, poder crear un torneo con sus respectivos grupos.
 Laravel- php
 
@@ -16,7 +16,10 @@ Laravel- php
 	   un login creado desde laravel
 	   Crud de Jugador
 	   
-
+2do punto :
+	Estado actual:
+		<li> Cargar jugadores </li>
+		
 Heroku
 	https://laraveltorres.herokuapp.com/
 	user: j@gmail.com
