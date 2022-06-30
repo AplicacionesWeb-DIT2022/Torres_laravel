@@ -19,8 +19,9 @@ Laravel- php
 		Creacion de un torneo   
 2do punto: react
 		Jugadores de un equipo (por defecto)
-		Todos los Clues del sistema
+		Todos los Clubes del sistema
 
 Heroku Laravel
 	https://laraveltorres.herokuapp.com/
 Heroku React
+		https://react-torres2.herokuapp.com/
