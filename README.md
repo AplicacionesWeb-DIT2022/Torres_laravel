@@ -13,9 +13,14 @@ con sus plantillas, poder crear un torneo con sus respectivos grupos.
 Laravel- php
 
 1er punto: deploy de la app con heroku
-	   un login creado desde laravel
-	   Crud de Jugador
-	   
+		Login creado desde laravel
+		Crud de Jugador
+		Crud de Club
+		Creacion de un torneo   
+2do punto: react
+		Jugadores de un equipo (por defecto)
+		Todos los Clues del sistema
 
-Heroku
+Heroku Laravel
 	https://laraveltorres.herokuapp.com/
+Heroku React
